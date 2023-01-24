@@ -3,7 +3,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
+import '../widgets/row_diaplay.dart';
 import '../widgets/workout_display.dart';
 
 class HomeView extends StatefulWidget {
@@ -128,26 +130,77 @@ class _HomeViewState extends State<HomeView> {
                         SizedBox(
                           height: 16,
                         ),
-                        GridView.extent(
-                          maxCrossAxisExtent: 200,
+                        Row(
+                          //make grid view builder instead with presets
+
                           children: [
-                            Container(
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/Placeholder.jpg",
-                                    width: 48,
-                                    height: 48,
-                                  ),
-                                  Text("PlaceHolder")
-                                ],
-                              ),
-                            )
+                            RowDispaly(
+                              image: AssetImage("assets/Placeholder.jpg"),
+                              label: "Placeholder",
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            RowDispaly(
+                              image: AssetImage("assets/Placeholder.jpg"),
+                              label: "Placeholder",
+                            ),
                           ],
-                        )
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          //make grid view builder instead with presets
+
+                          children: [
+                            RowDispaly(
+                              image: AssetImage("assets/Placeholder.jpg"),
+                              label: "Placeholder",
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            RowDispaly(
+                              image: AssetImage("assets/Placeholder.jpg"),
+                              label: "Placeholder",
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          //make grid view builder instead with presets
+
+                          children: [
+                            RowDispaly(
+                              image: AssetImage("assets/Placeholder.jpg"),
+                              label: "Placeholder",
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            RowDispaly(
+                              image: AssetImage("assets/Placeholder.jpg"),
+                              label: "Placeholder",
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          "Based on your recent",
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      )
+                    ],
+                  )
                 ]),
           ),
         )
