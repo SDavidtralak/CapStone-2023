@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:capstone_project/widgets/exercise_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -24,184 +25,290 @@ class _HomeViewState extends State<HomeView> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * .7,
+          height: MediaQuery.of(context).size.height * .63,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color.fromARGB(255, 49, 0, 185).withOpacity(0.7),
-                Color.fromARGB(255, 255, 0, 0).withOpacity(0.01),
-              ],
-            ),
+            color: Color.fromARGB(255, 185, 27, 88).withOpacity(.50),
           ),
         ),
         SingleChildScrollView(
           physics: BouncingScrollPhysics(),
-          child: SafeArea(
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  SizedBox(height: 40),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color.fromARGB(136, 27, 27, 27).withOpacity(0.0),
+                  Color.fromARGB(110, 0, 0, 0).withOpacity(0.59),
+                  Color.fromARGB(255, 0, 0, 0).withOpacity(0.89),
+                  Colors.black.withOpacity(0.9),
+                  Colors.black.withOpacity(1),
+                ],
+              ),
+            ),
+            child: SafeArea(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 40),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Recent",
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.history),
+                              SizedBox(
+                                width: 30,
+                              ),
+                              Icon(Icons.settings)
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      padding: EdgeInsets.all(30),
+                      child: Row(
+                        children: [
+                          Workoutdisplay(
+                            image: AssetImage("assets/Placeholder.jpg"),
+                            label: "Placeholder",
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Workoutdisplay(
+                            image: AssetImage("assets/Placeholder.jpg"),
+                            label: "Placeholder",
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Workoutdisplay(
+                            image: AssetImage("assets/Placeholder.jpg"),
+                            label: "Placeholder",
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Workoutdisplay(
+                            image: AssetImage("assets/Placeholder.jpg"),
+                            label: "Placeholder",
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Workoutdisplay(
+                            image: AssetImage("assets/Placeholder.jpg"),
+                            label: "Placeholder",
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                          Workoutdisplay(
+                            image: AssetImage("assets/Placeholder.jpg"),
+                            label: "Placeholder",
+                          ),
+                          SizedBox(
+                            width: 20,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Welcome Back",
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          Row(
+                            //make grid view builder instead with presets
+
+                            children: [
+                              RowDispaly(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              RowDispaly(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            //make grid view builder instead with presets
+
+                            children: [
+                              RowDispaly(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              RowDispaly(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Row(
+                            //make grid view builder instead with presets
+
+                            children: [
+                              RowDispaly(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(
+                                width: 16,
+                              ),
+                              RowDispaly(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 40),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Recent",
-                          style: Theme.of(context).textTheme.headline6,
+                        Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Text(
+                            "Based on your recent",
+                            style: Theme.of(context).textTheme.headline6,
+                            textAlign: TextAlign.right,
+                          ),
                         ),
-                        Row(
-                          children: [
-                            Icon(Icons.history),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Icon(Icons.settings)
-                          ],
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          physics: BouncingScrollPhysics(),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                          ),
+                          child: Row(
+                            children: [
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.all(30),
-                    child: Row(
+                    SizedBox(height: 20),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Workoutdisplay(
-                          image: AssetImage("assets/Placeholder.jpg"),
-                          label: "Placeholder",
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Text(
+                            "Recommended Days",
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
                         ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Workoutdisplay(
-                          image: AssetImage("assets/Placeholder.jpg"),
-                          label: "Placeholder",
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Workoutdisplay(
-                          image: AssetImage("assets/Placeholder.jpg"),
-                          label: "Placeholder",
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Workoutdisplay(
-                          image: AssetImage("assets/Placeholder.jpg"),
-                          label: "Placeholder",
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Workoutdisplay(
-                          image: AssetImage("assets/Placeholder.jpg"),
-                          label: "Placeholder",
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Workoutdisplay(
-                          image: AssetImage("assets/Placeholder.jpg"),
-                          label: "Placeholder",
-                        ),
-                        SizedBox(
-                          width: 20,
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          physics: BouncingScrollPhysics(),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20,
+                          ),
+                          child: Row(
+                            children: [
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                              SizedBox(width: 16),
+                              ExerciseDisplay(
+                                image: AssetImage("assets/Placeholder.jpg"),
+                                label: "Placeholder",
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Column(
-                      children: [
-                        Text(
-                          "Welcome Back",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        Row(
-                          //make grid view builder instead with presets
-
-                          children: [
-                            RowDispaly(
-                              image: AssetImage("assets/Placeholder.jpg"),
-                              label: "Placeholder",
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            RowDispaly(
-                              image: AssetImage("assets/Placeholder.jpg"),
-                              label: "Placeholder",
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          //make grid view builder instead with presets
-
-                          children: [
-                            RowDispaly(
-                              image: AssetImage("assets/Placeholder.jpg"),
-                              label: "Placeholder",
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            RowDispaly(
-                              image: AssetImage("assets/Placeholder.jpg"),
-                              label: "Placeholder",
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          //make grid view builder instead with presets
-
-                          children: [
-                            RowDispaly(
-                              image: AssetImage("assets/Placeholder.jpg"),
-                              label: "Placeholder",
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            RowDispaly(
-                              image: AssetImage("assets/Placeholder.jpg"),
-                              label: "Placeholder",
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                          "Based on your recent",
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                      )
-                    ],
-                  )
-                ]),
+                  ]),
+            ),
           ),
         )
       ],
