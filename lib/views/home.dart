@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:capstone_project/views/workout_view.dart';
 import 'package:capstone_project/widgets/exercise_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -39,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
                 end: Alignment.bottomCenter,
                 colors: [
                   Color.fromARGB(136, 27, 27, 27).withOpacity(0.0),
-                  Color.fromARGB(110, 0, 0, 0).withOpacity(0.59),
+                  Color.fromARGB(110, 0, 0, 0).withOpacity(0.9),
                   Color.fromARGB(255, 0, 0, 0).withOpacity(0.89),
                   Colors.black.withOpacity(0.9),
                   Colors.black.withOpacity(1),
@@ -144,16 +145,40 @@ class _HomeViewState extends State<HomeView> {
                             //make grid view builder instead with presets
 
                             children: [
-                              RowDispaly(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutView(),
+                                    ),
+                                  );
+                                },
+                                child: RowDispaly(
+                                  image: AssetImage("assets/Placeholder.jpg"),
+                                  label: "Placeholder",
+                                  height: 48,
+                                  width: 48,
+                                ),
                               ),
                               SizedBox(
                                 width: 16,
                               ),
-                              RowDispaly(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutView(),
+                                    ),
+                                  );
+                                },
+                                child: RowDispaly(
+                                  image: AssetImage("assets/Placeholder.jpg"),
+                                  label: "Placeholder",
+                                  height: 48,
+                                  width: 48,
+                                ),
                               ),
                             ],
                           ),
@@ -164,16 +189,40 @@ class _HomeViewState extends State<HomeView> {
                             //make grid view builder instead with presets
 
                             children: [
-                              RowDispaly(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutView(),
+                                    ),
+                                  );
+                                },
+                                child: RowDispaly(
+                                  image: AssetImage("assets/Placeholder.jpg"),
+                                  label: "Placeholder",
+                                  height: 48,
+                                  width: 48,
+                                ),
                               ),
                               SizedBox(
                                 width: 16,
                               ),
-                              RowDispaly(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutView(),
+                                    ),
+                                  );
+                                },
+                                child: RowDispaly(
+                                  image: AssetImage("assets/Placeholder.jpg"),
+                                  label: "Placeholder",
+                                  height: 48,
+                                  width: 48,
+                                ),
                               ),
                             ],
                           ),
@@ -181,19 +230,43 @@ class _HomeViewState extends State<HomeView> {
                             height: 20,
                           ),
                           Row(
-                            //make grid view builder instead with presets
+                            //load presets
 
                             children: [
-                              RowDispaly(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutView(),
+                                    ),
+                                  );
+                                },
+                                child: RowDispaly(
+                                  image: AssetImage("assets/Placeholder.jpg"),
+                                  label: "Placeholder",
+                                  height: 48,
+                                  width: 48,
+                                ),
                               ),
                               SizedBox(
                                 width: 16,
                               ),
-                              RowDispaly(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => WorkoutView(),
+                                    ),
+                                  );
+                                },
+                                child: RowDispaly(
+                                  image: AssetImage("assets/Placeholder.jpg"),
+                                  label: "Placeholder",
+                                  height: 48,
+                                  width: 48,
+                                ),
                               ),
                             ],
                           ),
@@ -220,32 +293,32 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           child: Row(
                             children: [
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
@@ -273,32 +346,32 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           child: Row(
                             children: [
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),
                               SizedBox(width: 16),
-                              ExerciseDisplay(
+                              Workoutdisplay(
                                 image: AssetImage("assets/Placeholder.jpg"),
                                 label: "Placeholder",
                               ),

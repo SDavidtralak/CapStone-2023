@@ -36,7 +36,7 @@ class _TabbarState extends State<Tabbar> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.library_books_outlined),
-              label: "Your Library",
+              label: "Library",
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.lock_person_outlined),

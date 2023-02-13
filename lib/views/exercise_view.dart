@@ -9,14 +9,14 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../widgets/back_home.dart';
 import '../widgets/list_builder.dart';
 
-class WorkoutView extends StatefulWidget {
-  const WorkoutView({super.key});
+class ExerciseView extends StatefulWidget {
+  const ExerciseView({super.key});
 
   @override
-  State<WorkoutView> createState() => _WorkoutViewState();
+  State<ExerciseView> createState() => _ExerciseViewState();
 }
 
-class _WorkoutViewState extends State<WorkoutView> {
+class _ExerciseViewState extends State<ExerciseView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,47 +100,29 @@ class _WorkoutViewState extends State<WorkoutView> {
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                                 SizedBox(
-                                  height: 16,
+                                  height: 120,
                                 ),
-                                Stack(
-                                  clipBehavior: Clip.none,
-                                  children: [
-                                    Row(
+                                Container(
+                                  decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.blue),
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Column(
                                       children: [
-                                        Icon(Icons.swap_vert),
+                                        Text("Rep ranges:"),
                                         SizedBox(
-                                          width: 16,
+                                          height: 40,
                                         ),
-                                        Icon(Icons.more_horiz_rounded)
+                                        Text("Muscle groups"),
+                                        SizedBox(
+                                          height: 40,
+                                        ),
+                                        Text("descriptions")
                                       ],
                                     ),
-                                    Positioned(
-                                      right: 0,
-                                      bottom: 0,
-                                      child: Container(
-                                        width: 64,
-                                        height: 64,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.blueAccent,
-                                        ),
-                                        child: Icon(
-                                          Icons.view_day,
-                                          size: 38,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                                SizedBox(
-                                  height: 16,
-                                ),
-                                Column(
-                                  children: [
-                                    ListDisplay(count: 5),
-                                  ],
-                                )
                               ],
                             ),
                           ),

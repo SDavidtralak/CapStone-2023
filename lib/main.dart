@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, duplicate_ignore
 
 import 'package:capstone_project/navigations/tabbar.dart';
 import 'package:flutter/material.dart';
