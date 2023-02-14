@@ -61,6 +61,7 @@ class _ExerciseViewState extends State<ExerciseView> {
                                 spreadRadius: 16,
                               )
                             ]),
+                            //try to figurre out images for database or make them static and call pathing in database.
                             child: Image(
                               image: AssetImage("assets/Placeholder.jpg"),
                               width: MediaQuery.of(context).size.width - 100,
@@ -73,6 +74,7 @@ class _ExerciseViewState extends State<ExerciseView> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                //inject name by database
                                 Text(
                                   "kfkfkfk kffkfkfk kfkfkfk fkkffkfkfkf kkfkfkfk",
                                   style: Theme.of(context).textTheme.caption,
@@ -96,7 +98,7 @@ class _ExerciseViewState extends State<ExerciseView> {
                                   height: 16,
                                 ),
                                 Text(
-                                  "KFKFKFKFKFKFK", // change to amount of exercises in workout
+                                  "KFKFKFKFKFKFK",
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                                 SizedBox(
@@ -109,22 +111,51 @@ class _ExerciseViewState extends State<ExerciseView> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Column(
+                                      //inject by database
                                       children: [
                                         Text("Rep ranges:"),
                                         SizedBox(
                                           height: 40,
                                         ),
+                                        //inject by database
                                         Text("Muscle groups"),
                                         SizedBox(
                                           height: 40,
                                         ),
-                                        Text("descriptions")
+                                        //inject by database
+                                        Text("descriptions"),
                                       ],
                                     ),
                                   ),
                                 ),
                               ],
                             ),
+                          ),
+                          SizedBox(
+                            height: 60,
+                          ),
+                          Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Row(),
+                              Positioned(
+                                right: 168,
+                                bottom: 0,
+                                child: Container(
+                                  width: 64,
+                                  height: 64,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.blueAccent,
+                                  ),
+                                  child: Icon(
+                                    Icons.star_half,
+                                    size: 38,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),

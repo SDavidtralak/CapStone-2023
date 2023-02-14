@@ -73,6 +73,7 @@ class _WorkoutViewState extends State<WorkoutView> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                //change to have name injected by database
                                 Text(
                                   "kfkfkfk kffkfkfk kfkfkfk fkkffkfkfkf kkfkfkfk",
                                   style: Theme.of(context).textTheme.caption,
@@ -95,6 +96,7 @@ class _WorkoutViewState extends State<WorkoutView> {
                                 SizedBox(
                                   height: 16,
                                 ),
+                                //pulled total count of exercise through database to list count
                                 Text(
                                   "KFKFKFKFKFKFK", // change to amount of exercises in workout
                                   style: Theme.of(context).textTheme.caption,
