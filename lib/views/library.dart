@@ -1,9 +1,12 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers
 
+import 'package:capstone_project/DB/DB.dart';
 import 'package:capstone_project/widgets/list_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
+List<String> exerciseName = [];
 
 class LibraryView extends StatefulWidget {
   const LibraryView({super.key});
@@ -13,6 +16,20 @@ class LibraryView extends StatefulWidget {
 }
 
 class _LibraryViewState extends State<LibraryView> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    var dbHelper = DB();
+    List<String> _exerciseName = await dbHelper.getExerciseName();
+    setState(() {
+      exerciseName = _exerciseName;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +82,7 @@ class _LibraryViewState extends State<LibraryView> {
                     SizedBox(
                       height: 60,
                     ),
-                    ListDisplay(count: 11)
+                    ListDisplay(textDisplay: exerciseName)
                   ],
                 ),
               ),

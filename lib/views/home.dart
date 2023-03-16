@@ -6,6 +6,7 @@ import 'package:capstone_project/views/workout_view.dart';
 import 'package:capstone_project/widgets/exercise_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sql_conn/sql_conn.dart';
 
 import '../widgets/row_diaplay.dart';
 import '../widgets/workout_display.dart';

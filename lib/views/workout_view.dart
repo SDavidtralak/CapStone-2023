@@ -5,6 +5,7 @@ import 'package:capstone_project/widgets/row_diaplay.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:sql_conn/sql_conn.dart';
 
 import '../widgets/back_home.dart';
 import '../widgets/list_builder.dart';
@@ -140,7 +141,7 @@ class _WorkoutViewState extends State<WorkoutView> {
                                 ),
                                 Column(
                                   children: [
-                                    ListDisplay(count: 5),
+                                    //replace with get workoutexercises more complicated
                                   ],
                                 )
                               ],

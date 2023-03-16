@@ -1,5 +1,8 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names
 
+import 'package:capstone_project/DB/DB.dart';
+
+import 'package:capstone_project/model/liftcitl.dart';
 import 'package:capstone_project/views/home.dart';
 import 'package:capstone_project/widgets/row_diaplay.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +12,32 @@ import 'package:flutter/src/widgets/framework.dart';
 import '../widgets/back_home.dart';
 import '../widgets/list_builder.dart';
 
+List<Exercise> exerciseInfo = [];
+
 class ExerciseView extends StatefulWidget {
-  const ExerciseView({super.key});
+  const ExerciseView({super.key, required this.Index});
+
+  final int Index;
 
   @override
   State<ExerciseView> createState() => _ExerciseViewState();
 }
 
 class _ExerciseViewState extends State<ExerciseView> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    var dbHelper = DB();
+    List<Exercise> _exerciseInfo = await dbHelper.getExercise();
+    setState(() {
+      exerciseInfo = _exerciseInfo;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,8 +97,10 @@ class _ExerciseViewState extends State<ExerciseView> {
                               children: [
                                 //inject name by database
                                 Text(
-                                  "kfkfkfk kffkfkfk kfkfkfk fkkffkfkfkf kkfkfkfk",
-                                  style: Theme.of(context).textTheme.caption,
+                                  exerciseInfo[widget.Index]
+                                      .Exercise_name
+                                      .toString(),
+                                  style: Theme.of(context).textTheme.headline3,
                                 ),
                                 SizedBox(
                                   height: 16,
@@ -98,7 +121,7 @@ class _ExerciseViewState extends State<ExerciseView> {
                                   height: 16,
                                 ),
                                 Text(
-                                  "KFKFKFKFKFKFK",
+                                  "",
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                                 SizedBox(
@@ -113,17 +136,23 @@ class _ExerciseViewState extends State<ExerciseView> {
                                     child: Column(
                                       //inject by database
                                       children: [
-                                        Text("Rep ranges:"),
+                                        // Text(exerciseInfo[widget.Index]
+                                        //   .Exercise_Reps
+                                        // .toString()),
                                         SizedBox(
                                           height: 40,
                                         ),
                                         //inject by database
-                                        Text("Muscle groups"),
+                                        Text(exerciseInfo[widget.Index]
+                                            .Exercise_muscle_group
+                                            .toString()),
                                         SizedBox(
                                           height: 40,
                                         ),
                                         //inject by database
-                                        Text("descriptions"),
+                                        Text(exerciseInfo[widget.Index]
+                                            .Exercise_desc
+                                            .toString()),
                                       ],
                                     ),
                                   ),

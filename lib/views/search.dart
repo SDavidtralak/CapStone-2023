@@ -1,10 +1,14 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, unused_element
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, unused_element, no_leading_underscores_for_local_identifiers, unused_local_variable
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 import '../widgets/list_builder.dart';
+import '../DB/DB.dart';
+import 'package:capstone_project/model/liftcitl.dart';
+
+List<String> exerciseName = [];
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
@@ -14,6 +18,20 @@ class SearchView extends StatefulWidget {
 }
 
 class _SearchViewState extends State<SearchView> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    var dbHelper = DB();
+    List<String> _exerciseName = await dbHelper.getExerciseName();
+    setState(() {
+      exerciseName = _exerciseName;
+    });
+  }
+
   bool _searchBoolean = false;
   Widget _searchTextField() {
     return TextField(
@@ -90,7 +108,9 @@ class _SearchViewState extends State<SearchView> {
                     SizedBox(
                       height: 10,
                     ),
-                    ListDisplay(count: 11)
+                    ListDisplay(
+                      textDisplay: exerciseName,
+                    )
                   ],
                 ),
               ),
