@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, prefer_const_declarations, unnecessary_new
+// ignore_for_file: unused_local_variable, prefer_const_declarations, unnecessary_new, non_constant_identifier_names
 import 'dart:io' as io;
 import 'dart:async';
 
@@ -47,13 +47,27 @@ class DB {
     return names;
   }
 
-  Future<List<String>> getWorkoutName() async {
+  Future<List<String>> getWorkoutExerciseName(int Index) async {
     var dbClient = await db;
-    List<Map> list =
-        await dbClient!.rawQuery('select Workout_name from Workout_tbl');
+
+    List<Map> list = await dbClient!.rawQuery(
+        'select Exercise_name from Exercise_tbl join WO_EX_tbl on WO_EX_tbl.Exercise_id = Exercise_tbl.Exercise_id where WO_EX_tbl.Workout_id = $Index');
     List<String> names = [];
     for (int i = 0; i < list.length; i++) {
-      names.add(list[i]['Workout_name']);
+      names.add(list[i]['Exercise_name']);
+    }
+    return names;
+  }
+
+  Future<List<Workouts>> getWorkoutName() async {
+    var dbClient = await db;
+    List<Map> list = await dbClient!.rawQuery('select * from Workout_tbl');
+    List<Workouts> names = [];
+    for (int i = 0; i < list.length; i++) {
+      names.add(new Workouts(
+        list[i]['Workout_id'],
+        list[i]['Workout_name'],
+      ));
     }
     return names;
   }
@@ -62,6 +76,23 @@ class DB {
     var dbClient = await db;
 
     List<Map> list = await dbClient!.rawQuery('select * from exercise_tbl');
+    List<Exercise> exercises = [];
+    for (int i = 0; i < list.length; i++) {
+      exercises.add(new Exercise(
+        list[i]['Exercise_name'],
+        list[i]['Exercise_Reps'],
+        list[i]['Exercise_desc'],
+        list[i]['Exercise_muscle_group'],
+      ));
+    }
+    return exercises;
+  }
+
+  Future<List<Exercise>> getExerciseByName(String Name) async {
+    var dbClient = await db;
+
+    List<Map> list = await dbClient!
+        .rawQuery('select * FROM Exercise_tbl where Exercise_name = \'$Name\'');
     List<Exercise> exercises = [];
     for (int i = 0; i < list.length; i++) {
       exercises.add(new Exercise(

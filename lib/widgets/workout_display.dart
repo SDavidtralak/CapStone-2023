@@ -7,10 +7,13 @@ import '../views/workout_view.dart';
 class Workoutdisplay extends StatelessWidget {
   final ImageProvider image;
   final String label;
+  final int index;
+
   const Workoutdisplay({
     Key? key,
     required this.image,
     required this.label,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -20,7 +23,11 @@ class Workoutdisplay extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => WorkoutView(),
+            builder: (context) => WorkoutView(
+              image: image,
+              index: index,
+              name: label,
+            ),
           ),
         );
       },

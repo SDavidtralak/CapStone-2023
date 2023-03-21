@@ -15,9 +15,9 @@ import '../widgets/list_builder.dart';
 List<Exercise> exerciseInfo = [];
 
 class ExerciseView extends StatefulWidget {
-  const ExerciseView({super.key, required this.Index});
+  const ExerciseView({super.key, required this.Name});
 
-  final int Index;
+  final String Name;
 
   @override
   State<ExerciseView> createState() => _ExerciseViewState();
@@ -32,7 +32,8 @@ class _ExerciseViewState extends State<ExerciseView> {
 
   void getData() async {
     var dbHelper = DB();
-    List<Exercise> _exerciseInfo = await dbHelper.getExercise();
+    List<Exercise> _exerciseInfo =
+        await dbHelper.getExerciseByName(widget.Name);
     setState(() {
       exerciseInfo = _exerciseInfo;
     });
@@ -97,9 +98,7 @@ class _ExerciseViewState extends State<ExerciseView> {
                               children: [
                                 //inject name by database
                                 Text(
-                                  exerciseInfo[widget.Index]
-                                      .Exercise_name
-                                      .toString(),
+                                  exerciseInfo[0].Exercise_name.toString(),
                                   style: Theme.of(context).textTheme.headline3,
                                 ),
                                 SizedBox(
@@ -143,14 +142,14 @@ class _ExerciseViewState extends State<ExerciseView> {
                                           height: 40,
                                         ),
                                         //inject by database
-                                        Text(exerciseInfo[widget.Index]
+                                        Text(exerciseInfo[0]
                                             .Exercise_muscle_group
                                             .toString()),
                                         SizedBox(
                                           height: 40,
                                         ),
                                         //inject by database
-                                        Text(exerciseInfo[widget.Index]
+                                        Text(exerciseInfo[0]
                                             .Exercise_desc
                                             .toString()),
                                       ],

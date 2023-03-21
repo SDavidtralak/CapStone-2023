@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers
 
 import 'dart:ui';
 
@@ -10,6 +10,10 @@ import 'package:sql_conn/sql_conn.dart';
 
 import '../widgets/row_diaplay.dart';
 import '../widgets/workout_display.dart';
+import '../DB/DB.dart';
+import 'package:capstone_project/model/liftcitl.dart';
+
+List<Workouts> workoutName = [];
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -19,6 +23,20 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    var dbHelper = DB();
+    List<Workouts> _workoutName = await dbHelper.getWorkoutName();
+    setState(() {
+      workoutName = _workoutName;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,15 +82,6 @@ class _HomeViewState extends State<HomeView> {
                             "Recent",
                             style: Theme.of(context).textTheme.headline6,
                           ),
-                          Row(
-                            children: [
-                              Icon(Icons.history),
-                              SizedBox(
-                                width: 30,
-                              ),
-                              Icon(Icons.settings)
-                            ],
-                          ),
                         ],
                       ),
                     ),
@@ -83,43 +92,49 @@ class _HomeViewState extends State<HomeView> {
                       child: Row(
                         children: [
                           Workoutdisplay(
-                            image: AssetImage("assets/Placeholder.jpg"),
-                            label: "Placeholder",
+                            image: AssetImage("assets/Workout1.jpg"),
+                            label: workoutName[0].Workout_name.toString(),
+                            index: workoutName[0].Workout_id,
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Workoutdisplay(
-                            image: AssetImage("assets/Placeholder.jpg"),
-                            label: "Placeholder",
+                            image: AssetImage("assets/Workout2.jpg"),
+                            label: workoutName[1].Workout_name.toString(),
+                            index: workoutName[1].Workout_id,
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Workoutdisplay(
-                            image: AssetImage("assets/Placeholder.jpg"),
-                            label: "Placeholder",
+                            image: AssetImage("assets/Workout3.jpg"),
+                            label: workoutName[2].Workout_name.toString(),
+                            index: workoutName[2].Workout_id,
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Workoutdisplay(
-                            image: AssetImage("assets/Placeholder.jpg"),
-                            label: "Placeholder",
+                            image: AssetImage("assets/Workout4.jpg"),
+                            label: workoutName[3].Workout_name.toString(),
+                            index: workoutName[3].Workout_id,
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Workoutdisplay(
-                            image: AssetImage("assets/Placeholder.jpg"),
-                            label: "Placeholder",
+                            image: AssetImage("assets/Workout5.jpg"),
+                            label: workoutName[4].Workout_name.toString(),
+                            index: workoutName[4].Workout_id,
                           ),
                           SizedBox(
                             width: 20,
                           ),
                           Workoutdisplay(
-                            image: AssetImage("assets/Placeholder.jpg"),
-                            label: "Placeholder",
+                            image: AssetImage("assets/Workout6.jpg"),
+                            label: workoutName[5].Workout_name.toString(),
+                            index: workoutName[5].Workout_id,
                           ),
                           SizedBox(
                             width: 20,
@@ -151,13 +166,20 @@ class _HomeViewState extends State<HomeView> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => WorkoutView(),
+                                      builder: (context) => WorkoutView(
+                                        image:
+                                            AssetImage("assets/Workout7.jpg"),
+                                        index: workoutName[6].Workout_id,
+                                        name: workoutName[6]
+                                            .Workout_name
+                                            .toString(),
+                                      ),
                                     ),
                                   );
                                 },
                                 child: RowDispaly(
-                                  image: AssetImage("assets/Placeholder.jpg"),
-                                  label: "Placeholder",
+                                  image: AssetImage("assets/Workout7.jpg"),
+                                  label: workoutName[6].Workout_name.toString(),
                                   height: 48,
                                   width: 48,
                                 ),
@@ -170,13 +192,20 @@ class _HomeViewState extends State<HomeView> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => WorkoutView(),
+                                      builder: (context) => WorkoutView(
+                                        image:
+                                            AssetImage("assets/Workout2.jpg"),
+                                        index: workoutName[1].Workout_id,
+                                        name: workoutName[1]
+                                            .Workout_name
+                                            .toString(),
+                                      ),
                                     ),
                                   );
                                 },
                                 child: RowDispaly(
-                                  image: AssetImage("assets/Placeholder.jpg"),
-                                  label: "Placeholder",
+                                  image: AssetImage("assets/Workout2.jpg"),
+                                  label: workoutName[1].Workout_name.toString(),
                                   height: 48,
                                   width: 48,
                                 ),
@@ -195,13 +224,20 @@ class _HomeViewState extends State<HomeView> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => WorkoutView(),
+                                      builder: (context) => WorkoutView(
+                                        image:
+                                            AssetImage("assets/Workout5.jpg"),
+                                        index: workoutName[4].Workout_id,
+                                        name: workoutName[4]
+                                            .Workout_name
+                                            .toString(),
+                                      ),
                                     ),
                                   );
                                 },
                                 child: RowDispaly(
-                                  image: AssetImage("assets/Placeholder.jpg"),
-                                  label: "Placeholder",
+                                  image: AssetImage("assets/Workout5.jpg"),
+                                  label: workoutName[4].Workout_name.toString(),
                                   height: 48,
                                   width: 48,
                                 ),
@@ -214,13 +250,20 @@ class _HomeViewState extends State<HomeView> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => WorkoutView(),
+                                      builder: (context) => WorkoutView(
+                                        image:
+                                            AssetImage("assets/Workout3.jpg"),
+                                        index: workoutName[2].Workout_id,
+                                        name: workoutName[2]
+                                            .Workout_name
+                                            .toString(),
+                                      ),
                                     ),
                                   );
                                 },
                                 child: RowDispaly(
-                                  image: AssetImage("assets/Placeholder.jpg"),
-                                  label: "Placeholder",
+                                  image: AssetImage("assets/Workout3.jpg"),
+                                  label: workoutName[2].Workout_name.toString(),
                                   height: 48,
                                   width: 48,
                                 ),
@@ -239,13 +282,20 @@ class _HomeViewState extends State<HomeView> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => WorkoutView(),
+                                      builder: (context) => WorkoutView(
+                                        image:
+                                            AssetImage("assets/Workout6.jpg"),
+                                        index: workoutName[5].Workout_id,
+                                        name: workoutName[5]
+                                            .Workout_name
+                                            .toString(),
+                                      ),
                                     ),
                                   );
                                 },
                                 child: RowDispaly(
-                                  image: AssetImage("assets/Placeholder.jpg"),
-                                  label: "Placeholder",
+                                  image: AssetImage("assets/Workout6.jpg"),
+                                  label: workoutName[5].Workout_name.toString(),
                                   height: 48,
                                   width: 48,
                                 ),
@@ -258,12 +308,19 @@ class _HomeViewState extends State<HomeView> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => WorkoutView(),
+                                      builder: (context) => WorkoutView(
+                                        image:
+                                            AssetImage("assets/Workout1.jpg"),
+                                        index: workoutName[0].Workout_id,
+                                        name: workoutName[0]
+                                            .Workout_name
+                                            .toString(),
+                                      ),
                                     ),
                                   );
                                 },
                                 child: RowDispaly(
-                                  image: AssetImage("assets/Placeholder.jpg"),
+                                  image: AssetImage("assets/Workout1.jpg"),
                                   label: "Placeholder",
                                   height: 48,
                                   width: 48,
@@ -295,33 +352,49 @@ class _HomeViewState extends State<HomeView> {
                           child: Row(
                             children: [
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout1.jpg"),
+                                label: workoutName[0].Workout_name.toString(),
+                                index: workoutName[0].Workout_id,
                               ),
-                              SizedBox(width: 16),
-                              Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              SizedBox(
+                                width: 20,
                               ),
-                              SizedBox(width: 16),
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout7.jpg"),
+                                label: workoutName[6].Workout_name.toString(),
+                                index: workoutName[6].Workout_id,
                               ),
-                              SizedBox(width: 16),
-                              Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              SizedBox(
+                                width: 20,
                               ),
-                              SizedBox(width: 16),
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout6.jpg"),
+                                label: workoutName[5].Workout_name.toString(),
+                                index: workoutName[5].Workout_id,
                               ),
-                              SizedBox(width: 16),
+                              SizedBox(
+                                width: 20,
+                              ),
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout4.jpg"),
+                                label: workoutName[3].Workout_name.toString(),
+                                index: workoutName[3].Workout_id,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Workoutdisplay(
+                                image: AssetImage("assets/Workout2.jpg"),
+                                label: workoutName[1].Workout_name.toString(),
+                                index: workoutName[1].Workout_id,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Workoutdisplay(
+                                image: AssetImage("assets/Workout3.jpg"),
+                                label: workoutName[2].Workout_name.toString(),
+                                index: workoutName[2].Workout_id,
                               ),
                             ],
                           ),
@@ -348,33 +421,49 @@ class _HomeViewState extends State<HomeView> {
                           child: Row(
                             children: [
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout1.jpg"),
+                                label: workoutName[0].Workout_name.toString(),
+                                index: workoutName[0].Workout_id,
                               ),
-                              SizedBox(width: 16),
-                              Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              SizedBox(
+                                width: 20,
                               ),
-                              SizedBox(width: 16),
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout2.jpg"),
+                                label: workoutName[1].Workout_name.toString(),
+                                index: workoutName[1].Workout_id,
                               ),
-                              SizedBox(width: 16),
-                              Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                              SizedBox(
+                                width: 20,
                               ),
-                              SizedBox(width: 16),
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout5.jpg"),
+                                label: workoutName[4].Workout_name.toString(),
+                                index: workoutName[4].Workout_id,
                               ),
-                              SizedBox(width: 16),
+                              SizedBox(
+                                width: 20,
+                              ),
                               Workoutdisplay(
-                                image: AssetImage("assets/Placeholder.jpg"),
-                                label: "Placeholder",
+                                image: AssetImage("assets/Workout4.jpg"),
+                                label: workoutName[3].Workout_name.toString(),
+                                index: workoutName[3].Workout_id,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Workoutdisplay(
+                                image: AssetImage("assets/Workout7.jpg"),
+                                label: workoutName[6].Workout_name.toString(),
+                                index: workoutName[6].Workout_id,
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Workoutdisplay(
+                                image: AssetImage("assets/Workout6.jpg"),
+                                label: workoutName[5].Workout_name.toString(),
+                                index: workoutName[5].Workout_id,
                               ),
                             ],
                           ),

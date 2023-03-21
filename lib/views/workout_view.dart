@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, no_leading_underscores_for_local_identifiers
 
+import 'package:capstone_project/DB/DB.dart';
 import 'package:capstone_project/views/home.dart';
 import 'package:capstone_project/widgets/row_diaplay.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +10,41 @@ import 'package:sql_conn/sql_conn.dart';
 
 import '../widgets/back_home.dart';
 import '../widgets/list_builder.dart';
+import 'exercise_view.dart';
+
+List<String> exerciseName = [];
 
 class WorkoutView extends StatefulWidget {
-  const WorkoutView({super.key});
+  const WorkoutView(
+      {super.key,
+      required this.image,
+      required this.index,
+      required this.name});
+
+  final ImageProvider image;
+  final int index;
+  final String name;
 
   @override
   State<WorkoutView> createState() => _WorkoutViewState();
 }
 
 class _WorkoutViewState extends State<WorkoutView> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    var dbHelper = DB();
+    List<String> _exerciseName =
+        await dbHelper.getWorkoutExerciseName(widget.index);
+    setState(() {
+      exerciseName = _exerciseName;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +90,7 @@ class _WorkoutViewState extends State<WorkoutView> {
                               )
                             ]),
                             child: Image(
-                              image: AssetImage("assets/Placeholder.jpg"),
+                              image: widget.image,
                               width: MediaQuery.of(context).size.width - 100,
                               fit: BoxFit.cover,
                             ),
@@ -76,7 +103,7 @@ class _WorkoutViewState extends State<WorkoutView> {
                               children: [
                                 //change to have name injected by database
                                 Text(
-                                  "kfkfkfk kffkfkfk kfkfkfk fkkffkfkfkf kkfkfkfk",
+                                  widget.name,
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                                 SizedBox(
@@ -99,7 +126,8 @@ class _WorkoutViewState extends State<WorkoutView> {
                                 ),
                                 //pulled total count of exercise through database to list count
                                 Text(
-                                  "KFKFKFKFKFKFK", // change to amount of exercises in workout
+                                  exerciseName.length
+                                      .toString(), // change to amount of exercises in workout
                                   style: Theme.of(context).textTheme.caption,
                                 ),
                                 SizedBox(
@@ -120,17 +148,30 @@ class _WorkoutViewState extends State<WorkoutView> {
                                     Positioned(
                                       right: 0,
                                       bottom: 0,
-                                      child: Container(
-                                        width: 64,
-                                        height: 64,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Colors.blueAccent,
-                                        ),
-                                        child: Icon(
-                                          Icons.view_day,
-                                          size: 38,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ExerciseView(
+                                                Name: exerciseName[0],
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          width: 64,
+                                          height: 64,
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.blueAccent,
+                                          ),
+                                          child: Icon(
+                                            Icons.view_day,
+                                            size: 38,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -141,7 +182,9 @@ class _WorkoutViewState extends State<WorkoutView> {
                                 ),
                                 Column(
                                   children: [
-                                    //replace with get workoutexercises more complicated
+                                    ListDisplay(
+                                      textDisplay: exerciseName,
+                                    )
                                   ],
                                 )
                               ],

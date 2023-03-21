@@ -1,12 +1,23 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers
 
 import 'package:capstone_project/DB/DB.dart';
+import 'package:capstone_project/model/liftcitl.dart';
 import 'package:capstone_project/widgets/list_builder.dart';
+import 'package:capstone_project/widgets/workout_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-List<String> exerciseName = [];
+List<Workouts> exerciseName = [];
+List<String> imagePath = [
+  'assets/Workout1.jpg',
+  'assets/Workout2.jpg',
+  'assets/Workout3.jpg',
+  'assets/Workout4.jpg',
+  'assets/Workout5.jpg',
+  'assets/Workout6.jpg',
+  'assets/Workout7.jpg'
+];
 
 class LibraryView extends StatefulWidget {
   const LibraryView({super.key});
@@ -24,7 +35,7 @@ class _LibraryViewState extends State<LibraryView> {
 
   void getData() async {
     var dbHelper = DB();
-    List<String> _exerciseName = await dbHelper.getExerciseName();
+    List<Workouts> _exerciseName = await dbHelper.getWorkoutName();
     setState(() {
       exerciseName = _exerciseName;
     });
@@ -82,7 +93,10 @@ class _LibraryViewState extends State<LibraryView> {
                     SizedBox(
                       height: 60,
                     ),
-                    ListDisplay(textDisplay: exerciseName)
+                    WorkoutList(
+                      textDisplay: exerciseName,
+                      imagePath: imagePath,
+                    )
                   ],
                 ),
               ),

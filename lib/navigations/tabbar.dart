@@ -2,7 +2,7 @@
 
 import 'package:capstone_project/views/home.dart';
 import 'package:capstone_project/views/library.dart';
-import 'package:capstone_project/views/profile.dart';
+
 import 'package:capstone_project/views/search.dart';
 import 'package:flutter/material.dart';
 
@@ -38,10 +38,6 @@ class _TabbarState extends State<Tabbar> {
               icon: Icon(Icons.library_books_outlined),
               label: "Library",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.lock_person_outlined),
-              label: "Profile",
-            )
           ]),
       body: Stack(
         children: [
@@ -56,10 +52,6 @@ class _TabbarState extends State<Tabbar> {
           renderView(
             2,
             LibraryView(),
-          ),
-          renderView(
-            3,
-            ProfileView(),
           ),
         ],
       ),
