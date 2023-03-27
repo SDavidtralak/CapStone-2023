@@ -47,6 +47,17 @@ class DB {
     return names;
   }
 
+  Future<List<String>> getWorkoutImages() async {
+    var dbClient = await db;
+    List<Map> list =
+        await dbClient!.rawQuery('select Workout_image from Workout_tbl');
+    List<String> names = [];
+    for (int i = 0; i < list.length; i++) {
+      names.add(list[i]['Workout_image']);
+    }
+    return names;
+  }
+
   Future<List<String>> getWorkoutExerciseName(int Index) async {
     var dbClient = await db;
 
@@ -67,6 +78,7 @@ class DB {
       names.add(new Workouts(
         list[i]['Workout_id'],
         list[i]['Workout_name'],
+        list[i]['Workout_image'],
       ));
     }
     return names;
@@ -79,6 +91,7 @@ class DB {
     List<Exercise> exercises = [];
     for (int i = 0; i < list.length; i++) {
       exercises.add(new Exercise(
+        list[i]['Exercise_id'],
         list[i]['Exercise_name'],
         list[i]['Exercise_Reps'],
         list[i]['Exercise_desc'],
@@ -96,6 +109,7 @@ class DB {
     List<Exercise> exercises = [];
     for (int i = 0; i < list.length; i++) {
       exercises.add(new Exercise(
+        list[i]['Exercise_id'],
         list[i]['Exercise_name'],
         list[i]['Exercise_Reps'],
         list[i]['Exercise_desc'],
@@ -103,5 +117,29 @@ class DB {
       ));
     }
     return exercises;
+  }
+
+  Future<void> insertWorkout(String name, String image) async {
+    var dbClient = await db;
+
+    Map<String, dynamic> mapWorkout = {
+      'Workout_name': name,
+      'Workout_image': image,
+    };
+
+    int id = await dbClient!.insert('Workout_tbl', mapWorkout,
+        conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+  Future<void> insertWorkoutExercise(int workoutId, int exerciseId) async {
+    var dbClient = await db;
+
+    Map<String, dynamic> mapWorkout = {
+      'Workout_id': workoutId,
+      'Exercise_id': exerciseId,
+    };
+
+    int id = await dbClient!.insert('WO_EX_tbl', mapWorkout,
+        conflictAlgorithm: ConflictAlgorithm.replace);
   }
 }

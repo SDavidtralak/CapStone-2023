@@ -109,8 +109,8 @@ class _HomeViewState extends State<HomeView> {
                           ),
                           Workoutdisplay(
                             image: AssetImage("assets/Workout3.jpg"),
-                            label: workoutName[2].Workout_name.toString(),
-                            index: workoutName[2].Workout_id,
+                            label: workoutName[8].Workout_name.toString(),
+                            index: workoutName[8].Workout_id,
                           ),
                           SizedBox(
                             width: 20,
@@ -321,7 +321,7 @@ class _HomeViewState extends State<HomeView> {
                                 },
                                 child: RowDispaly(
                                   image: AssetImage("assets/Workout1.jpg"),
-                                  label: "Placeholder",
+                                  label: workoutName[0].Workout_name.toString(),
                                   height: 48,
                                   width: 48,
                                 ),

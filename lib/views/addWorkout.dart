@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, non_constant_identifier_names
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, unnecessary_null_comparison
 
 import 'package:capstone_project/DB/DB.dart';
 import 'package:capstone_project/model/liftcitl.dart';
 import 'package:capstone_project/views/new_workout.dart';
 import 'package:capstone_project/views/workout_view.dart';
+import 'package:capstone_project/widgets/back_home.dart';
 import 'package:capstone_project/widgets/list_builder.dart';
 import 'package:capstone_project/widgets/row_diaplay.dart';
 import 'package:capstone_project/widgets/workout_list.dart';
@@ -11,17 +12,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-List<Workouts> exerciseName = [];
+List<Workouts> workoutInfo = [];
 List<String> imagePath = [];
+var dbHelper = DB();
 
-class LibraryView extends StatefulWidget {
-  const LibraryView({super.key});
+class AddWorkout extends StatefulWidget {
+  const AddWorkout({super.key, required this.exerciseId});
+
+  final int exerciseId;
 
   @override
-  State<LibraryView> createState() => _LibraryViewState();
+  State<AddWorkout> createState() => _AddWorkoutState();
 }
 
-class _LibraryViewState extends State<LibraryView> {
+class _AddWorkoutState extends State<AddWorkout> {
   @override
   void initState() {
     super.initState();
@@ -32,7 +36,7 @@ class _LibraryViewState extends State<LibraryView> {
     var dbHelper = DB();
     List<Workouts> _exerciseName = await dbHelper.getWorkoutName();
     setState(() {
-      exerciseName = _exerciseName;
+      workoutInfo = _exerciseName;
     });
     List<String> _imagePath = await dbHelper.getWorkoutImages();
     setState(() {
@@ -86,6 +90,7 @@ class _LibraryViewState extends State<LibraryView> {
                       ),
                       Row(
                         children: [
+                          BackHome(),
                           Icon(
                             Icons.library_add,
                             size: 30,
@@ -94,7 +99,7 @@ class _LibraryViewState extends State<LibraryView> {
                             width: 10,
                           ),
                           Text(
-                            "Your Library",
+                            "Select Workout",
                             style: Theme.of(context).textTheme.headlineLarge,
                           ),
                         ],
@@ -118,10 +123,27 @@ class _LibraryViewState extends State<LibraryView> {
                           width: 48,
                         ),
                       ),
-                      WorkoutList(
-                        textDisplay: exerciseName,
-                        imagePath: imagePath,
-                      )
+                      ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: workoutInfo == null ? 0 : workoutInfo.length,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              dbHelper.insertWorkoutExercise(
+                                  workoutInfo[index].Workout_id,
+                                  widget.exerciseId);
+                              Navigator.pop(context);
+                            },
+                            child: RowDispaly(
+                              image: AssetImage(imagePath[index]),
+                              label: workoutInfo[index].Workout_name.toString(),
+                              height: 68,
+                              width: 48,
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),

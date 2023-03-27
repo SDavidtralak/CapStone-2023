@@ -3,6 +3,7 @@
 import 'package:capstone_project/DB/DB.dart';
 
 import 'package:capstone_project/model/liftcitl.dart';
+import 'package:capstone_project/views/addWorkout.dart';
 import 'package:capstone_project/views/home.dart';
 import 'package:capstone_project/widgets/row_diaplay.dart';
 import 'package:flutter/material.dart';
@@ -162,28 +163,18 @@ class _ExerciseViewState extends State<ExerciseView> {
                           SizedBox(
                             height: 60,
                           ),
-                          Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Row(),
-                              Positioned(
-                                right: 168,
-                                bottom: 0,
-                                child: Container(
-                                  width: 64,
-                                  height: 64,
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.blueAccent,
-                                  ),
-                                  child: Icon(
-                                    Icons.star_half,
-                                    size: 38,
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddWorkout(
+                                    exerciseId: exerciseInfo[0].Exercise_id,
                                   ),
                                 ),
-                              ),
-                            ],
+                              );
+                            },
+                            child: const Text('Favourite'),
                           ),
                         ],
                       ),

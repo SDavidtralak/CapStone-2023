@@ -31,7 +31,7 @@ class WorkoutList extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => WorkoutView(
                   image: AssetImage(imagePath[index]),
-                  index: index,
+                  index: textDisplay[index].Workout_id,
                   name: textDisplay[index].Workout_name.toString(),
                 ),
               ),

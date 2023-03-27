@@ -12,7 +12,7 @@ class ExerciseDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 140,
       child: Column(children: [
         Image(
