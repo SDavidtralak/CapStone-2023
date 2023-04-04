@@ -97,6 +97,22 @@ class _LibraryViewState extends State<LibraryView> {
                             "Your Library",
                             style: Theme.of(context).textTheme.headlineLarge,
                           ),
+                          SizedBox(
+                            width: 110,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              await Future.delayed(
+                                  Duration(milliseconds: 1500));
+                              setState(() {
+                                getData();
+                              });
+                            },
+                            child: Icon(
+                              Icons.refresh,
+                              size: 30,
+                            ),
+                          )
                         ],
                       ),
                       SizedBox(

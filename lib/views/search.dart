@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, unused_element, no_leading_underscores_for_local_identifiers, unused_local_variable
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, prefer_final_fields, unused_element, no_leading_underscores_for_local_identifiers, unused_local_variable, deprecated_member_use, prefer_collection_literals, avoid_function_literals_in_foreach_calls
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +9,9 @@ import '../DB/DB.dart';
 import 'package:capstone_project/model/liftcitl.dart';
 
 List<String> exerciseName = [];
+List<String> searchedList = [];
+
+String searchString = '';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
@@ -29,6 +32,7 @@ class _SearchViewState extends State<SearchView> {
     List<String> _exerciseName = await dbHelper.getExerciseName();
     setState(() {
       exerciseName = _exerciseName;
+      searchedList = _exerciseName;
     });
   }
 
@@ -43,6 +47,11 @@ class _SearchViewState extends State<SearchView> {
       ),
       textInputAction: TextInputAction.search,
       decoration: InputDecoration(hintText: 'Search'),
+      onChanged: ((value) {
+        setState(() {
+          filterSearchResults(value);
+        });
+      }),
     );
   }
 
@@ -109,7 +118,7 @@ class _SearchViewState extends State<SearchView> {
                       height: 10,
                     ),
                     ListDisplay(
-                      textDisplay: exerciseName,
+                      textDisplay: searchedList,
                     )
                   ],
                 ),
@@ -119,5 +128,28 @@ class _SearchViewState extends State<SearchView> {
         ],
       ),
     );
+  }
+
+  void filterSearchResults(String query) {
+    List<String> fillerList = [];
+    fillerList.addAll(exerciseName);
+    if (query.isNotEmpty) {
+      List<String> dummyListData = [];
+      fillerList.forEach((item) {
+        if (item.contains(query)) {
+          dummyListData.add(item);
+        }
+      });
+      setState(() {
+        searchedList.clear();
+        searchedList.addAll(dummyListData);
+      });
+      return;
+    } else {
+      setState(() {
+        getData();
+      });
+      return;
+    }
   }
 }

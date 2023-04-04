@@ -136,9 +136,9 @@ class _ExerciseViewState extends State<ExerciseView> {
                                     child: Column(
                                       //inject by database
                                       children: [
-                                        // Text(exerciseInfo[widget.Index]
-                                        //   .Exercise_Reps
-                                        // .toString()),
+                                        Text(exerciseInfo[0]
+                                            .Exercise_Reps
+                                            .toString()),
                                         SizedBox(
                                           height: 40,
                                         ),
